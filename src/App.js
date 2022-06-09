@@ -1,30 +1,33 @@
 import React from 'react';
 import './App.css';
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from "react-router-dom";
 
 import Login from "./pages/Login.js";
-import Signup from "./pages/Signup.js";
+import CoolForm from "./pages/CoolForm.js";
 import Profile from "./pages/Profile.js";
+import Home from "./pages/Home";
+import {logout} from "./features/user";
+import {useDispatch} from "react-redux";
 
 function App() {
+    const dispatch = useDispatch();
+    const history = useHistory();
     return (
         <Router>
-            <h1>camb.ai React project!</h1>
+            <a href="/"><h1>React project!</h1></a>
+            <p><a href="/login">Login</a>, <a href="/coolform">Cool Form</a>, <a onClick={() => {dispatch(logout()); history.push("/login")}}>Logout</a>, <a href="/profile">Profile</a></p>
             <Switch>
                 <Route exact path="/">
-                    <div>
-                        <h1>Home Page</h1>
-                        <a href="/Login.js">Login</a> or <a href="/Signup.js">Signup</a>
-                    </div>
+                    <Home />
                 </Route>
 
                 <Route path="/login">
                     <Login />
                 </Route>
 
-                <Route path="/signup">
-                    <Signup />
+                <Route path="/coolform">
+                    <CoolForm />
                 </Route>
 
                 <Route path="/profile">
