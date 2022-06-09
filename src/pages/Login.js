@@ -10,9 +10,19 @@ const Login = () => {
     const history = useHistory();
     const users = {
         "krishnans2006@gmail.com": {
-            "name": "Krishnan",
-            "plan": 0,
-            "password": "krishnan"
+            name: "Krishnan",
+            plan: 0,
+            password: "krishnan"
+        },
+        "krishy@gmail.com": {
+            name: "Krishy",
+            plan: 1,
+            password: "krishy"
+        },
+        "fishy@gmail.com": {
+            name: "Fishy",
+            plan: 2,
+            password: "fishy"
         }
     }
     const processForm = (e) => {
