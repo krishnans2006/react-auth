@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import FormElement  from "./FormElement";
+import FormElement  from "./FormElement/FormElement";
 
 import {useSelector, useDispatch} from "react-redux";
+import Button from "./Button/Button";
+import Paragraph from "./Paragraph";
 
 const planMappings = {
     "-1": [],
-    0: ["Upload"],
-    1: ["Upload", "Subtitles"],
-    2: ["Upload", "Subtitles", "Transcription"]
+    0: [FormElement],
+    1: [FormElement, Button],
+    2: [FormElement, Button, Paragraph]
 }
 
-const CustomizeForm = (Component, props) => {
+const CustomizeForm = (Component, Replacement) => {
     const plan = useSelector(state => state.user.value).plan;
-    const componentName = props.name;
-    if (planMappings[plan.toString()].includes(componentName)) {
-        props.disabled = false;
+    if (planMappings[plan.toString()].includes(Component)) {
+        return <Component />;
     } else {
-        props.disabled = true;
+        return <Replacement />;
     }
-    return <Component {...props} />;
 };
 
 export default CustomizeForm;
